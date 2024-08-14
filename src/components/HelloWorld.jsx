@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useQuery } from '@tanstack/react-query';
 
@@ -9,15 +9,14 @@ const fetchRandomText = async () => {
 };
 
 const HelloWorld = () => {
+  // Simulate an unhandled error
+  throw new Error("This is a simulated unhandled error for testing purposes.");
+
   const { data: randomText, refetch, isLoading, isError } = useQuery({
     queryKey: ['randomText'],
     queryFn: fetchRandomText,
     enabled: false,
   });
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 p-4">
